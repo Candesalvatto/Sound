@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Sound",
+    "slug": "Sound",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/iconosound.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/soundAnd.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#151226"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/soundAnd.png",
+        "backgroundColor": "#151226",
+        "resizeMode": "contain"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/iconosound.png"
+    }
+  }
+}

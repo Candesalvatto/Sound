@@ -1,0 +1,32 @@
+{
+    "items":[
+        {
+            "id": 0,
+            "title": "Rikhter",
+            "description": "Preparate para bailar sin parar hasta que alga el sol! No te lo pierdas 🚀",
+            "price": 47,
+            "quantity":2,
+            "stock": 133,
+            "category": "Córdoba",
+            "organizer": "Terrafuria",
+            "location": "Ex Complejo Gala",
+            "image": "../assets/images/25e8b7b9-0275-4bbf-a61c-5194ed99a88f.webp",
+            "day": "10 de agosto",
+            "hour": "23:00 hs"
+        },
+        {
+            "id": 1,
+            "title": "La Cintia",
+            "description": "Preparate para bailar sin parar hasta que alga el sol! No te lo pierdas 🚀",
+            "price": 70,
+            "quantity":2,
+            "stock": 100,
+            "category": "Córdoba",
+            "organizer": "El Perla",
+            "location": "El Perla",
+            "image": "../assets/images/3d3a4394-80cf-43c9-9547-04de30fb369f.webp",
+            "day": "3 de agosto",
+            "hour": "00:00 hs"
+        }
+    ]
+}

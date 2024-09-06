@@ -1,0 +1,33 @@
+[
+    {
+        "id":8,
+        "userId":3,
+        "total":2000,
+        "createdAt":1721086952,
+        "items":[
+            {
+                
+        "id": 0,
+        "title": "Rikhter",
+        "category": "Córdoba",
+        "organizer": "Terrafuria",
+        "day": "10 de agosto",
+        "hour": "23:00 hs",
+        "dayShort": "10 AGO",
+        "location": "Ex Complejo Gala",
+        "image": "../assets/images/25e8b7b9-0275-4bbf-a61c-5194ed99a88f.webp"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "title": "La Cintia",
+        "price": 70,
+        "category": "Córdoba",
+        "organizer": "El Perla",
+        "day": "3 de agosto",
+        "hour": "00:00 hs",
+        "location": "El Perla",
+        "image": "../assets/images/3d3a4394-80cf-43c9-9547-04de30fb369f.webp"
+    }
+]
