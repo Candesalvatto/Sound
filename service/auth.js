@@ -9,7 +9,8 @@ export const authApi = createApi({
       query: (user) => ({
         url: `accounts:signInWithPassword?key=${API_AUTH}`,
         method: 'POST',
-        body: user
+        body: user,
+        returnSecureToken: true
       })
     }),
     register: builder.mutation({
@@ -17,6 +18,7 @@ export const authApi = createApi({
         url:`accounts:signUp?key=${API_AUTH}`,
         method: 'POST',
         body: user,
+        returnSecureToken: true
       })
     })
   })

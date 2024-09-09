@@ -16,7 +16,7 @@ export const MapPreview = ({location}) => {
   return (
     <View>
         <Image
-        source={location.latitude &&{uri:mapStaticURL}}
+        source={{uri:mapStaticURL}}
         style= {styles.image}/>
     </View>
   )
@@ -24,8 +24,8 @@ export const MapPreview = ({location}) => {
 
 const styles = StyleSheet.create({
     image:{
-        with:300,
-        height:300,
+      width:500,
+      height:500
 
     }
 })

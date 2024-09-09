@@ -54,6 +54,15 @@ export const shopApi = createApi({
         getUser:builder.query({
             query:({localId})=> `users/${localId}.json`,
             transformResponse:(response) => {
+                console.log('respuesta del servidor:', response)
+                    // Verifica si `response` y `response.locations` existen
+    if (!response || !response.locations) {
+        console.warn("No hay datos de 'locations' en la respuesta");
+        return {
+          ...response, // Devuelve la respuesta original, incluso si está vacía
+          locations: [] // Retorna un array vacío para `locations`
+        };
+      }
                 const data = Object.entries(response.locations).map(item => ({id:item[0],...item[1]})) 
                 return {
                     ...response,
@@ -66,3 +75,4 @@ export const shopApi = createApi({
   
 
   export const { useGetCategoriesQuery, useGetEventsQuery, useGetEventsByCategoryQuery, useGetEventByIdQuery,usePostOrderMutation, useGetOrdersByUserQuery, usePatchImageProfileMutation, useGetUserQuery, usePostUserLocationMutation } = shopApi
+

@@ -25,14 +25,30 @@ export const ImageSelector = ({navigation}) => {
         if(result.canceled) return
 
         console.log('Tomando imagen',result)
-        setImage("data:image/jpg;base64," + result.assets[0].base64)
+        setImage(`data:image/jpg;base64,${result.assets[0].base64}`);
  
      }
-     const confirmImage = () => {
-        triggerAddImageProfile({image,localId})
-        console.log('confiemando imagen')
-        navigation.navigate("MyProfile")
-    }
+    //  const confirmImage = () => {
+    //     triggerAddImageProfile({image,localId})
+    //     console.log('confiemando imagen')
+    //     navigation.navigate("MyProfile")
+    // }
+    const confirmImage = () => {
+        if (image) {
+            // Asegúrate de que `triggerAddImageProfile` esté funcionando
+            triggerAddImageProfile({ image, localId })
+                .unwrap()  // Desempaqueta la respuesta para manejarla como promesa
+                .then(() => {
+                    console.log('Imagen guardada correctamente');
+                    navigation.navigate('MyProfile');
+                })
+                .catch((error) => {
+                    console.error('Error al guardar la imagen:', error);
+                });
+        } else {
+            console.error('No se seleccionó ninguna imagen');
+        }
+    };
 
   return (
     <View style={styles.container}>

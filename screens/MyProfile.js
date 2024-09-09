@@ -3,12 +3,13 @@ import { View, Image, StyleSheet, Text, FlatList } from 'react-native'
 import SubmitButton from '../components/SubmitButton'
 import { useSelector } from 'react-redux'
 import { useGetUserQuery } from '../service/shop'
+import { useEffect } from 'react'
 
 
 export const MyProfile = ({navigation}) => {
 
     const localId = useSelector((state) => state.auth.localId);
-    const { data: user, isLoading } = useGetUserQuery({ localId });
+    const { data: user, isLoading,  refetch  } = useGetUserQuery({ localId });
     console.log('localId:', localId); 
     if (user) {
         console.log("User:", user);
@@ -25,6 +26,13 @@ export const MyProfile = ({navigation}) => {
 
       console.log("User:", user);  
 
+      useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            refetch();  // Refresca los datos del perfil cuando la pantalla está en foco
+        });
+        return unsubscribe;
+    }, [navigation, refetch]);
+
   return (
     <View style={styles.container}>
         <View style={styles.containerBanner}>
@@ -38,8 +46,8 @@ export const MyProfile = ({navigation}) => {
         source= { user.image ? {uri:user.image} : require('../assets/images/defaultProfile.png')}
         style= {styles.image}
         resizeMode='cover'/>
-        <SubmitButton onPress={navigation.navigate('ImageSelector')} title="Agregar foto de perfil" style= {styles.button}/>
-        <SubmitButton onPress={navigation.navigate('LocationSelector')} title="Agregar localizacion" style= {styles.button}/>
+        <SubmitButton onPress={() => navigation.navigate('ImageSelector')}  title="Agregar foto de perfil" style= {styles.button}/>
+        <SubmitButton onPress={() => navigation.navigate('LocationSelector')}  title="Agregar localizacion" style= {styles.button}/>
         <FlatList
           data={user.locations}
           keyExtractor={item => item.id}
