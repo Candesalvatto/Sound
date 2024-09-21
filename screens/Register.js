@@ -7,8 +7,7 @@ import { useRegisterMutation } from '../service/auth'
 import { useDispatch } from 'react-redux'
 import registerSchema from '../validations/registerSchema'
 import { setUser } from '../features/auth/authSlice'
-
-
+import {colors }from '../global/colors'
 
 
 const Register = ({navigation}) => {
@@ -102,11 +101,11 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:"center",
     alignItems:"center",
-    backgroundColor:'#151226',
+    backgroundColor:colors.purple,
     },
     container:{
       width:"90%",
-      backgroundColor:'#151226',
+      backgroundColor:colors.purple,
       gap:15,
       borderRadius:10,
       justifyContent:"center",
@@ -114,17 +113,17 @@ const styles = StyleSheet.create({
     },
     title:{
       fontSize:22,
-      fontFamily: 'MullerBold',
+      fontFamily: 'AuthorBold',
             color: 'white'
     },
     sub:{
       fontSize:14,
-      fontFamily: 'MullerBold',
+      fontFamily: 'AuthorRegular',
       color: 'white'
     },
     subLink:{
       fontSize:14,
-      fontFamily: 'MullerBold',
-      color:'#7b71ff'
+      fontFamily: 'AuthorRegular',
+      color:colors.violet
     }
 })

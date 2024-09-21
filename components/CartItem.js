@@ -1,18 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
-import Entypo from '@expo/vector-icons/Entypo'
-import { colors } from '../global/colors'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 
-const CartItem = ({item}) => {
+const CartItem = ({item,  onDelete}) => {
     return (
       <View style={styles.container}>
         <View style={styles.containerText}>
           <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.brand}>{item.brand}</Text>
-          <Text style={styles.brand}>{item.quantity}</Text>
-          <Text style={styles.price}>{item.price} $</Text>
+          <Text style={styles.title}>Cant   {item.quantity}</Text>
+          <AntDesign name="delete" size={24} color="red" onPress={() => onDelete(item.id)}/>
         </View>
-        <Entypo name="trash" size={48} color="black" />
+        <View style={styles.container2}>
+        <Text style={styles.price}>$ {item.price}</Text>
+        <Text style={styles.price}>Entrada {item.type} </Text>
+        </View> 
       </View>
     )
   }
@@ -26,19 +27,27 @@ const CartItem = ({item}) => {
           backgroundColor:'rgba(0, 0, 0, 0.10)',
           marginVertical:10,
           padding:20,
-          flexDirection:"row",
-          alignItems:"center",
-          justifyContent:"space-between",
+          flexDirection:"column",
           borderRadius:3
       },
       containerText:{
-          width:"70%",
-          gap:5
+          width:"100%",
+          gap:5,
+          borderBottomWidth:1,
+          borderColor:"black",
+          flexDirection:"row",
+          justifyContent:"space-between",
+          padding:10,
+      },
+      container2:{
+                    flexDirection:"row",
+                    padding:10,
+                    justifyContent:"space-between",
       },
       title:{
           color:"black",
           fontSize:20,
-          fontFamily: 'MullerBold',
+          fontFamily: 'AuthorBold',
       },
       brand:{
           color:"white",
@@ -48,5 +57,9 @@ const CartItem = ({item}) => {
           color:"black",
           fontSize:16,
           fontWeight:"bold"
+      },
+      delete:{
+        color: "red",
+        fontSize:18
       }
   })

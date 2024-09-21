@@ -6,13 +6,20 @@ import { fonts } from './global/fonts'
 import Navigator from './navigation/Navigator'
 import { store } from './app/store'
 import { Provider } from 'react-redux'
-
-
+import {init} from './db'
 
 
 
 const App = () => {
-    
+
+  init()
+.then(()=>console.log('inicializando DB'))
+.catch( err =>{
+  console.log("Fallo en la inicializacin de DB")
+  console.log(err.message)
+})
+
+
 const [fontLoaded] = useFonts(fonts)
 
   if(!fontLoaded){
@@ -23,9 +30,7 @@ const [fontLoaded] = useFonts(fonts)
       <>
        <Provider store={store}>
            <Navigator/>  
-
       </Provider>
-
          <StatusBar style="dark"  />
       </>        
     )

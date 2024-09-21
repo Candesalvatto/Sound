@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 import SubmitButton from '../components/SubmitButton'
 import * as ImagePicker from 'expo-image-picker'
-import { usePatchImageProfileMutation } from '../service/shop'
+import { usePatchImageProfileMutation } from '../service/user'
 import { useSelector } from 'react-redux'
 
 export const ImageSelector = ({navigation}) => {
@@ -24,30 +24,36 @@ export const ImageSelector = ({navigation}) => {
  
         if(result.canceled) return
 
-        console.log('Tomando imagen',result)
         setImage(`data:image/jpg;base64,${result.assets[0].base64}`);
- 
      }
-    //  const confirmImage = () => {
-    //     triggerAddImageProfile({image,localId})
-    //     console.log('confiemando imagen')
-    //     navigation.navigate("MyProfile")
-    // }
+
+     const pickImageFromGallery = async () => {
+        const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (!granted) return;
+    
+        const result = await ImagePicker.launchImageLibraryAsync({
+          allowsEditing: true,
+          aspect: [9, 9],
+          quality: 0.2,
+          base64: true,
+        });
+    
+        if (result.canceled) return;
+    
+        setImage(`data:image/jpg;base64,${result.assets[0].base64}`);
+      };
+
     const confirmImage = () => {
         if (image) {
-            // Asegúrate de que `triggerAddImageProfile` esté funcionando
             triggerAddImageProfile({ image, localId })
-                .unwrap()  // Desempaqueta la respuesta para manejarla como promesa
+                .unwrap()  
                 .then(() => {
-                    console.log('Imagen guardada correctamente');
                     navigation.navigate('MyProfile');
                 })
                 .catch((error) => {
                     console.error('Error al guardar la imagen:', error);
                 });
-        } else {
-            console.error('No se seleccionó ninguna imagen');
-        }
+        } 
     };
 
   return (
@@ -64,6 +70,7 @@ export const ImageSelector = ({navigation}) => {
     style= {styles.image}
     resizeMode='cover'/>
     <SubmitButton  onPress={pickImage} title="Tomar Imagen" style= {styles.button}/>
+    <SubmitButton  onPress={pickImageFromGallery} title="Seleccionar Imagen de galeria" style= {styles.button}/>
     <SubmitButton onPress={confirmImage} title="Confirmar" style= {styles.button}/>
     </View>
 </View>

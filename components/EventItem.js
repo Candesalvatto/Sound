@@ -12,7 +12,6 @@ const EventItem = ({event}) => {
 
   return (
     <Pressable style={styles.container} onPress={() => {
-      console.log("Navigating to event ID:", event.id, event.title); // Debugging line
       navigation.navigate("Detail", { id: event.id });
     }}>
     <View style={styles.containerImage}>
@@ -51,31 +50,20 @@ const styles = StyleSheet.create({
         marginHorizontal:"5%",
         borderRadius:20,
     },
-    dayShort:{
-      backgroundColor:"#fff",
-      color:"000",
-      width:50,
-      height:50,
-      borderRadius:10,
-fontWeight: "600",
-textAlign:"center",
-fontSize:15,
-flexDirection: 'column'
 
-    },
 
     title:{
         width:"100%",
-        color:'#fff',
-        padding:10,
-        fontFamily:'MullerBold',
-        letterSpacing:2
+        color:'black',
+        padding:6,
+        fontFamily: 'AuthorBold',
+        letterSpacing:1
     },
     titleMin:{
       fontSize:14
     },
     titleMax:{
-      fontSize:20
+      fontSize:24
     },
     containerImage:{
       width:'100%',
@@ -85,7 +73,6 @@ flexDirection: 'column'
     },
     containerText:{
             width:'100%',
-            backgroundColor: '#000',
             borderBottomLeftRadius:10,
             borderBottomRightRadius:10,
     },

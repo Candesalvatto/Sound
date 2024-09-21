@@ -6,21 +6,22 @@ export const authApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: URL_AUTH }),
   endpoints: (builder) => ({
     login: builder.mutation({
-      query: (user) => ({
+      query: ({...user}) => ({
         url: `accounts:signInWithPassword?key=${API_AUTH}`,
         method: 'POST',
         body: user,
-        returnSecureToken: true
+         returnSecureToken: true
       })
     }),
     register: builder.mutation({
-      query: (user) => ({
+      query: ({...user}) => ({
         url:`accounts:signUp?key=${API_AUTH}`,
         method: 'POST',
         body: user,
-        returnSecureToken: true
+         returnSecureToken: true
       })
     })
+   
   })
 })
 

@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View,TextInput } from 'react-native'
+import {colors} from '../global/colors'
 
-const InputForm = ({label,value,onChangeText,isSecure,error}) => {
+const InputForm = ({label,value,onChangeText,isSecure,error, style}) => {
   return (
     <View style={styles.inputContainer}>
         <Text style={styles.titleInput}>{label}</Text>
         <TextInput  
             value={value}  
             onChangeText={onChangeText} 
-            style={[styles.input, { color: 'white' }]}
+            style={[styles.input, style]}
             secureTextEntry={isSecure}
 
         />
@@ -26,25 +27,27 @@ const styles = StyleSheet.create({
         width:"90%",
         borderWidth:0,
         borderBottomWidth:3,
-        borderBottomColor:"#7b71ff",
+        borderBottomColor:colors.violet,
         padding:2,
-        fontFamily: 'MullerBold',
+        fontFamily: 'AuthorRegular',
         fontSize:14,
         marginHorizontal:"5%",
         marginVertical:10,
+        color: 'white'
 
       },
       titleInput:{
         width:"90%",
         marginHorizontal:"5%",
-        fontSize:16,
-        fontFamily: 'MullerBold',
-                color: '#7b71ff'
+        fontSize:20,
+        fontFamily: 'AuthorBold',
+        color: colors.violet,
+
       },
       error:{
         fontSize:16,
         color:"red",
-        fontFamily: 'MullerBold',
+        fontFamily: 'AuthorBold',
         fontStyle:"italic",
         marginLeft:20
       }

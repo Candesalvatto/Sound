@@ -4,8 +4,10 @@ import SubmitButton from "../components/SubmitButton"
 import { useState } from "react"
 import { useLoginMutation } from "../service/auth"
 import { useDispatch } from "react-redux"
-import loginSchema from '../validations/loginSchema'
 import { setUser } from "../features/auth/authSlice"
+import { insertSession } from "../db"
+import loginSchema from '../validations/loginSchema'
+import {colors} from '../global/colors'
 
 
 export const Login = ({navigation}) => {
@@ -17,20 +19,18 @@ export const Login = ({navigation}) => {
   const [triggerLogin,{data,isSuccess,isError,error}] = useLoginMutation()
   const dispatch = useDispatch()
 
-
-
   const onSubmit = async () => {
     try {
       loginSchema.validateSync({email,password})
       const {data} = await triggerLogin({email,password})
+      insertSession(data)
       dispatch(setUser({
         email:data.email,
         idToken:data.idToken,
         localId:data.localId
       }))
-      console.log('iniciando sesion', email)
-      console.log('iniciando idToktn', idToken)
-      console.log('iniciando localId', localId)
+
+
     } catch (error) {
       console.log(error.path),
       console.log(error.message)
@@ -82,11 +82,11 @@ const styles = StyleSheet.create({
       flex:1,
       justifyContent:"center",
       alignItems:"center",
-      backgroundColor:'#151226',
+      backgroundColor:colors.purple,
     },
     container:{
       width:"90%",
-      backgroundColor:'#151226',
+      backgroundColor:colors.purple,
       gap:15,
       borderRadius:10,
       justifyContent:"center",
@@ -94,17 +94,17 @@ const styles = StyleSheet.create({
     },
     title:{
       fontSize:22,
-      fontFamily: 'MullerBold',
+      fontFamily: 'AuthorBold',
             color: 'white'
     },
     sub:{
-      fontSize:14,
-      fontFamily: 'MullerBold',
+      fontSize:18,
+      fontFamily: 'AuthorRegular',
       color: 'white'
     },
     subLink:{
-      fontSize:14,
-      fontFamily: 'MullerBold',
-      color:'#7b71ff'
+      fontSize:18,
+      fontFamily: 'AuthorRegular',
+      color:colors.violet
     }
 })

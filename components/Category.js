@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
  
     },
     text:{
-        fontSize:16
+        fontSize:23,
+        fontFamily: 'AuthorBold',
     }
 })

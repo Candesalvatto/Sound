@@ -1,59 +1,51 @@
-import Header from '../components/Header'
 import Search from '../components/Search'
 import { FlatList, Text, View, Image} from 'react-native'
 import EventItem from '../components/EventItem'
-import events from '../data/events.json'
 import React, { useEffect, useState } from 'react'
-import Counter from '../components/Counter'
 import { useGetEventsQuery } from '../service/shop'
-
-
-
-
+ import { LoadingSpinner } from '../components/LoadingSpinner'
 
 const AllEvents = () => {
-  const { data: events, error, isLoading } = useGetEventsQuery();
 
-
-  // const renderItem = ({item}) => <EventItem event={item} />;
+  const { data: events, error, isLoading, isSuccess } = useGetEventsQuery();
   const [eventsFiltered,setEventsFiltered] = useState([])
+
+  useEffect(()=>{
+    if(isSuccess && events){
+      setEventsFiltered(events)
+    }
+  },[isSuccess])
 
   const onSearch = (input) => {
 
     if(input){
-        setEventsFiltered(eventsFiltered.filter(event => event.title.includes(input) ))
+        setEventsFiltered(events.filter(event => event.title.toLowerCase().includes(input.toLowerCase())));
     }else{
-        setEventsFiltered(events.filter(event => event.category === category))
-    }
+         setEventsFiltered(events)
+        }
    
   }
 
-    //Mostrar un mensaje mientras los eventos están cargando
+
     if (isLoading) {
-      return <Text>Cargando eventos...</Text>;
+      return <LoadingSpinner/>
     }
 
-  
-    // Mostrar un mensaje de error si la carga falló
     if (error) {
       return <Text>Error al cargar eventos</Text>;
     }
   
 
   return (
-    <>
- 
-        <Search/>
-        <Counter/>
-      <Text>TODOS LOS EVENTOS</Text>
+    <View>
+        <Search onSearch={onSearch}/>
       <FlatList
-        data={events} 
-        // renderItem={renderItem} 
+        data={eventsFiltered} 
         renderItem={({ item }) => <EventItem event={item} />} 
         keyExtractor={(item) => item.id} 
         contentContainerStyle={{paddingBottom: 20}} 
       />
-    </>
+    </View>
   )
 }
 

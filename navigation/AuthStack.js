@@ -4,6 +4,7 @@ import { Login } from '../screens/Login';
 import Register from '../screens/Register';
 
 
+
 const Stack = createNativeStackNavigator();
 
 const AuthStack = () => {

@@ -1,0 +1,1 @@
+export const mapApiGoogle= "AIzaSyC-o-Mu7STB956FnpjkwmUKTCllh6h0IG4"

@@ -19,10 +19,16 @@
         "foregroundImage": "./assets/images/soundAnd.png",
         "backgroundColor": "#151226",
         "resizeMode": "contain"
-      }
+      },
+      "package": "com.candesalvatto.Sound"
     },
     "web": {
       "favicon": "./assets/images/iconosound.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ee0c5694-c380-4c71-bcd2-e62db3014de1"
+      }
     }
   }
 }

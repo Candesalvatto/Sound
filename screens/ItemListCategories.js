@@ -2,21 +2,16 @@ import { FlatList, StyleSheet, Text, View, SafeAreaView, Image} from 'react-nati
 import React, { useEffect, useState } from 'react'
 import Search from '../components/Search'
 import EventItem from '../components/EventItem'
-// import { useSelector } from 'react-redux'
+
 import { useGetEventsByCategoryQuery } from '../service/shop'
+import { LoadingSpinner } from '../components/LoadingSpinner'
 
 const ItemListCategories = ({route}) => {
 
 const {category} = route.params
 const {data: events, isSuccess, isError, error, isLoading } = useGetEventsByCategoryQuery(category)
+const [eventsFiltered,setEventsFiltered] = useState([])
 
-// const events = useSelector((state => state.shop.events))
-
-  const [eventsFiltered,setEventsFiltered] = useState([])
-
-  // useEffect(()=>{
-  //   setEventsFiltered(events.filter(event => event.category === category))
-  // },[category])
 
   useEffect(()=>{
     if(isSuccess){
@@ -35,7 +30,7 @@ const {data: events, isSuccess, isError, error, isLoading } = useGetEventsByCate
    
   }
 
-   if(isLoading) return <View><Text>cargando</Text></View>
+   if(isLoading) return <LoadingSpinner/>
 
   if(isError) return <View><Text>{error.message}</Text></View>
 
